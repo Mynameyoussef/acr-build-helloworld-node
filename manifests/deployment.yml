@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mynameyoussefacrbuildhelloworldnode 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mynameyoussefacrbuildhelloworldnode
+  template:
+    metadata:
+      labels:
+        app: mynameyoussefacrbuildhelloworldnode 
+    spec:
+      containers:
+        - name: mynameyoussefacrbuildhelloworldnode 
+          image: asreg02.azurecr.io/mynameyoussefacrbuildhelloworldnode
+          ports:
+          - containerPort: 80
