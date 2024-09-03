@@ -2,7 +2,7 @@ name: build_deploy_aks
 on:
   push:
     paths:
-      - "azure-vote/**"
+      - "acr-build-helloworld-node/**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,8 +18,8 @@ jobs:
           tenant: ${{ secrets.tenant }}
           registry: ${{ secrets.registry }}
           repository: ${{ secrets.repository }}
-          image:  azure-vote-front
-          folder: azure-vote
+          image:  alpine
+          folder: manifest
           branch: master
           tag: ${{ github.sha }}
       - name: Azure login
@@ -42,6 +42,6 @@ jobs:
         with:
           namespace: 'default'
           manifests: |
-             azure-vote-all-in-one-redis.yaml
+             azure-pipelines.yaml
           images: '${{ secrets.registry }}.azurecr.io/${{ secrets.repository }}/azure-vote-front:${{ github.sha }}'
           pull-images: false 
